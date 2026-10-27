@@ -1,0 +1,219 @@
+
+
+===PAGE 11===
+22-NSIJ1G11   
+ 
+a. Sachant que   date = ("samedi", 21, 10, 1995), que renvoie  
+mois[date[2]][1] ? 
+ 
+b. Ecrire une fonction jour_suivant(date)  qui prend en paramètre une 
+date sous forme de tuple et qui renvoie un tuple désignant la date du 
+lendemain.  
+Par exemple :  
+jour_suivant( ("samedi", 21, 10, 1995) ) renvoie   
+("dimanche", 22, 10, 1995)  
+ 
+jour_suivant( ("mardi", 31, 10, 1995) ) renvoie   
+("mercredi", 1, 11, 1995)  
+ 
+On ne tient pas compte des années bissextiles et on considère que le mois 
+de février comporte toujours 28 jours. 
+ 
+ 
+ 
+ 
+  
+Page 11 / 41
+
+===PAGE 12===
+22-NSIJ2G11   
+ 
+ 
+  
+ 
+La cryptographie est un ensemble de techniques permettant de chiffrer un message. 
+ 
+Une technique de cryptographie consiste à mélanger les lettres d’un alphabet et à 
+réécrire le message avec ces permutations. En Pytho n, on peut créer un dictionnaire 
+dans lequel les clés sont les lettres de l’alphabet  et les valeurs sont celles de 
+l’alphabet mélangé. 
+ 
+Par exemple, si l’alphabet contient les 4 lettres A, B, C et D, et si le dictionnaire de 
+l’alphabet mélangé est alpha ={"A": "B", "B": "D", "C": "A", "D": 
+"C"}, la chaîne de caractères "BAC" sera chiffrée "DBA".  
+ 
+Un tel dictionnaire sera appelé dictionnaire de chiffrement . 
+ 
+1. On souhaite chiffrer un message écrit avec l’alphabet  A, B, C, D, E, F, G  à 
+l’aide du dictionnaire alpha ={"A":"B", "B":"D", "C":"A", "D":"C", 
+"E":"F", "F":"G", "G":"E"}  
+ 
+a. Quelle est la valeur associée à la clé "D"  ? En Python, comment l’obtenir ? 
+b. Chiffrer la chaîne de caractères "BAGAGE" avec le dictionnaire alpha . 
+ 
+ 
+2. On considère qu’un mot est une chaîne de caractères (un objet de type str ) écrite 
+uniquement avec les 26 lettres de l’alphabet en majuscule. Par exemple, "ARBRE"  
+est un mot et "L’ARBRE !"  n’est pas un mot à cause des caractères : 
+"’", " " (espace) et "!".  
+Écrire une fonction  chiffrer(mot, alpha)  qui prend en paramètres  mot un 
+mot et alpha un dictionnaire de chiffrement, et qui renvoie une chaîne de 
+caractères chiffrée avec le dictionnaire de chiffrement  alpha . 
+ 
+ 
+3. On souhaite déchiffrer un mot chiffré avec cette méthode. 
+ 
+a. Si un mot est chiffré avec le dictionnaire de chiffrement alpha ={"A":"B", 
+"B":"D", "C":"A", "D":"C", "E":"F", "F":"G", "G":"E"} , 
+donner un dictionnaire permettant de le déchiffrer. 
+ 
+b. Ecrire une fonction en Python appelée dico_dechiffrement(dico)  qui 
+prend en paramètre dico un dictionnaire de chiffrement et qui renvoie un 
+dictionnaire permettant le déchiffrement. On pourra s’inspirer du code incomplet 
+ci-dessous ou proposer une autre solution :   
+ 
+Page 12 / 41
+EXERCICE 6 : Cet exercice porte sur les structures de données (dictionnaires).
+
+===PAGE 13===
+22-NSIJ2G11   
+ 
+def dico_dechiffrement(dico): 
+    nouveau = {} 
+    for lettre in dico : 
+        code = dico[…………………] 
+        nouveau[…………………] = ………………… 
+    return nouveau 
+ 
+c. Ecrire une fonction dechiffre(mot, dico)  qui reçoit un mot chiffré et un 
+dictionnaire de chiffrement et renvoie le mot décodé. On utilisera les fonctions 
+écrites dans les questions précédentes. 
+ 
+4. On souhaite à présent créer un dictionnaire de chiffrement. Ecrire une fonction 
+dico_chiffrement(alphabet)  qui prend en paramètre alphabet un tableau 
+de lettres et qui renvoie un dictionnaire de chiffrement dont les clés sont les lettres du 
+tableau alphabet  et les valeurs sont les lettres du tableau alphabet  mélangées. 
+ 
+On pourra utiliser la fonction shuffle  du module random  qui mélange en place un 
+tableau. Par exemple, on a : 
+>>> tab = ["A", "B", "C", "D"] 
+>>> shuffle(tab)  
+>>> tab  
+["B", "A", "D", "C"] 
+ 
+ 
+ 
+  
+Page 13 / 41
+
+===PAGE 14===
+22-NSIJ1AS1  
+ 
+ 
+ 
+Au service des urgences d'un hôpital, le triage consiste à classifier ou à déterminer le 
+degré de priorité des patients. Il implique une réévaluation périodique et systématique de 
+ce degré pour les patients en attente. 
+ 
+Dans le système informatique, chaque patient obtient un identifiant à son arrivée en salle 
+d’attente ainsi qu’une priorité dépendant de la gravité potentielle de ses symptômes. 
+Le patient ayant la priorité 1 est le premier qui doit être pris en charge et deux patients ne 
+peuvent pas avoir la même priorité. 
+ 
+Pour modéliser la salle d’attente en Python, chaque patient est représenté par un tuple 
+composé de son identifiant d’arrivée et de sa priorité. Ainsi, la variable attente 
+implémentée ci-dessous représente une salle d’attente de trois patients où, à cet instant, 
+le patient identifié 47 sera le premier à être pris en charge, puis le patient 45 et finalement 
+le patient 49. 
+ 
+attente = [(45,2),(47,1),(49,3)] 
+ 
+1. Écrire l’instruction qui permet d’insérer dans la liste attente, définie ci-dessus, un 
+nouveau patient identifié 50 avec une priorité de 4.  
+ 
+2. Pour optimiser le traitement informatisé de prise en charge des patients, on veut que la 
+salle d’attente soit ordonnée par priorité. On utilise alors la fonction tri(attente) 
+donnée ci-dessous qui renvoie la salle d’attente triée dans l’ordre croissant des 
+priorités. 
+def tri(attente) : 
+    for i in range(len(attente)) : 
+        pos = i 
+        mini = attente[i][1] 
+        for j in range(i, len(attente)) : 
+           if attente[j][1] < mini : 
+               pos = j 
+               mini = attente[j][1] 
+        temp = attente[i] 
+        attente[i]= attente[pos] 
+        attente[pos] = temp 
+ 
+a. Quel algorithme de tri est ici implémenté ? 
+ le tri fusion  
+ le tri par insertion  
+ le tri par sélection  
+ le tri rapide  
+ 
+b. Quelle est la complexité en temps des tris par insertion et par sélection ?  
+ constante : ܱ(1) 
+ logarithmique : ܱ(log ݊) 
+ linéaire : ܱ(݊) 
+ quadratique : ܱ(݊²) 
+ 
+Page 14 / 41
+Exercice 7 : Cet exercice porte sur la programmation et les algorithmes de tri.
+
+===PAGE 15===
+22-NSIJ1AS1  
+3. On considère dans cette question que la salle d’attente est triée par ordre croissant des 
+priorités. 
+a. Quand un patient est pris en charge, il faut l’enlever de la salle d’attente. La 
+fonction quitte(attente) supprime le patient de priorité 1 de la liste attente 
+passée en paramètre. Cette fonction renvoie la nouvelle salle d’attente. On aurait 
+par exemple : 
+ 
+   >>> quitte([(47, 1), (45, 2), (49, 3)]) 
+   [(45, 2), (49, 3)] 
+ 
+Recopier et compléter la ligne 14 en définissant une liste en compréhension. 
+ 
+   13   def quitte(attente) : 
+   14       return [. . . . . . . . . . . . . . . . .] 
+ 
+b. La fonction quitte(attente) ne met pas à jour les priorités des patients. 
+Écrire une fonction maj(attente) qui met à jour, dans une nouvelle liste, les 
+priorités des patients suite à la prise en charge d’un patient et renvoie cette 
+nouvelle salle d’attente. On aurait par exemple : 
+ 
+     >>> maj([45, 2), (49, 3)] 
+     [(45, 1), (49, 2)] 
+ 
+4.  
+a. Écrire la fonction priorite(attente, p) qui renvoie l'ordre de priorité d’un 
+patient p de la liste attente. On aurait par exemple : 
+ 
+   >>> priorite([(45,2),(47,1),(49,3)], 49) 
+   3 
+ 
+b. La fonction revise(attente,p) renvoie une nouvelle salle d’attente non triée 
+où le patient p dont la priorité médicale a évolué reçoit la priorité 1 et les priorités 
+des autres patients sont mises à jour. On aurait par exemple : 
+ 
+   >>> revise([(45,2),(47,1),(49,3)], 49) 
+   [(45,3),(47,2),(49,1)] 
+ 
+Recopier et compléter les lignes 28, 29 du code ci-dessous. 
+ 
+23 def revise(attente, p) : 
+24     nouvelle = [] 
+25     n = priorite(attente, p) 
+26     for (patient, prio) in attente : 
+27        if patient == p : 
+28             nouvelle.append( ………………………………  ) 
+29        elif …………………………   : 
+30             nouvelle.append((patient, prio + 1)) 
+31        else : 
+32             nouvelle.append((patient, prio)) 
+33     return nouvelle 
+ 
+ 
+Page 15 / 41

@@ -1,0 +1,177 @@
+
+
+===PAGE 7===
+ 
+2. D
+éveloppement
+P
+our effectuer son étude sur les prénoms à partir du fichier CSV, le programmeur
+souhaite utiliser la bibliothèque csv.
+a) La bibliothèque csv est un module natif du moteur python.
+Donner, dans ce cas, l’instruction d’importation.
+b) Au cours du développement de son projet, le programmeur souhaite insérer une
+assertion sur l’argument donné à la fonction.
+Proposer une assertion sur le type de l’argument qui corrige  une erreur lorsque
+le type ne correspond pas à celui attendu.
+c) Avant le déploiement de sa solution, le programmeur décide de rendre sa fonction
+plus robuste.
+Pour cela il veut remplacer l’ assertion proposée dans la question 2.b) par une
+gestion de l’argument pour éviter toutes erreurs empêchant la poursuite du
+programme.
+Proposer alors une ou plusieurs instructions en Python utilisant l’argument afin de
+s’assurer que la fonction se termine quel que soit le type de l’argument.
+3. A
+méliorations
+E
+n prenant en compte les deux dernières lettres du prénom, il parvient à augmenter
+son taux de réussite à 74,4%. Pour cela, son étude du fichier CS V lui permet de
+créer deux listes : liste_M2 pour les terminaisons de deux lettres associées aux
+prénoms masculins et liste_F2 pour les prénoms féminins.
+Sur votre copie, recopier et modifier la structure conditionnelle (lignes 8 à 13) de la
+fonction genre afin de prendre en compte les terminaisons de deux lettres des listes
+liste_M2 et liste_F2.
+Page : 7 / 4121-NSIJ2ME3
+
+===PAGE 8===
+  
+ 
+Cet exercice est un exercice d’algorithmique et de programmation en langage Python 
+utilisant un fichier csv. 
+Partie 1 
+Dans un fichier villes56.csv , on a regroupé les neuf villes du M orbihan de pl us 
+de 10 000 habitants en 2012. 
+dep nom nb_hab_1999 nb_hab_2012 densite superficie alt_min alt_max 
+56 Lorient 59224 58100 3272 17.48 0 46 
+56 Vannes 51759 53000 1625 32.3 0 56 
+56 Lanester 21901 22500 1209 18.37 0 51 
+56 Ploemeur 18301 18200 448 39.72 -1 55 
+56 Hennebont 13410 14600 818 18.57 0 82 
+56 Pontivy 13501 13700 553 24.85 48 192 
+56 Auray 10899 12500 1783 6.91 0 43 
+56 Guidel 9155 10100 198 52.29 0 70 
+56 Saint-Avé 8298 10100 400 26.09 12 136 
+ 
+1) En appliquant le programme suivant : 
+Programme 1 
+ 
+1 import csv 
+2  
+3 def readCSV( filename):    
+4    ’’’ 
+5    filename est une chaine de caractères correspondant au nom d’un fichier du type csv 
+6    La fonction renvoie une variable de type list 
+7    ’’’ 
+8     with open(filename, mode = 'r', encoding='utf-8', newline = '') as csvFile: 
+9         fichier = csv.DictReader(csvFile)  
+10         table1 = [dict(ligne) for ligne in fichier] 
+11              # les lignes 9 et 10 permettent d’obtenir une liste de dictionnaires dont 
+les clés correspondent à la première ligne du fichier csvFile 
+12     csvFile.close() 
+13     return table1 
+14  
+15 listeVilles = readCSV("villes56.csv")  
+16 print(listeVilles) 
+ 
+a) À partir des quatre propositions ci-dessous, indiquer ce que signifie « utf-8 » à 
+la ligne 8.  
+Réponse A : type de codage de caractères informatiques. 
+Réponse B : nom du dossier contenant le fichier. 
+Réponse C : nom du fichier. 
+Réponse D : taille du fichier. 
+ 
+b) Indiquer ce que signifie le « mode ='r'» à la ligne 8. 
+Page : 8 / 41
+22-NSIJ1NC1
+EXERCICE 4 :
+
+===PAGE 9===
+  
+2) Après exécution du programme Programme 1, voici le début de l’affichage obtenu : 
+ 
+ [{'dep': '56', 
+  'nom': 'Lorient', 
+  'nb_hab_1999': '59224', 
+  'nb_hab_2012': '58100', 
+  'densite': '3272', 
+  'superficie': '17.48', 
+  'alt_min': '0', 
+  'alt_max': '46'}, 
+ {'dep': '56',………………………… 
+ 
+a) Indiquer le type de la variable listeVilles. 
+ 
+b) Indiquer ce que renvoie l’instruction listeVilles[1] en précisant son type. 
+ 
+c) Écrire une instruction permettant d’obtenir le nombre d’habitants à Pontivy en 2012.  
+ 
+Partie 2 
+On admet qu’après un traitement, les données figurant dans les colonnes 2 à 7 du tableau 
+listeVilles sont des entiers ou des flottants.  On considère que listeVilles résulte de 
+l’exécution du programme Programme 1. 
+1) Indiquer ce que renvoie l’instruction suivante appliquée à listeVilles :  
+>>>[(d['nom'],d['alt_max']) for d in listeVilles if d['alt_max']>100] 
+ 
+2) Écrire en langage Python une fonction variations qui prend en paramètre listeV, 
+du même type que la variable listeVilles, et renvoie la différence totale entre le 
+nombre d’habitants en 2012 et le nombre d’habitants en 1999 cumulée pour 
+l’ensemble des villes.  
+ 
+3) Écrire en langage Python une fonction surmax qui prend en paramètre  listeV, du 
+même type que la variable listeVilles, et renvoie la ville ayant la superficie la plus 
+grande. On admet que deux villes n’ont pas la même superficie. 
+ 
+  
+Page : 09 / 4122-NSIJ1NC1
+
+===PAGE 10===
+22-NSIJ1G11   
+ 
+ 
+Cet exercice porte sur les structures de données (listes, p-uplets et dictionnaires). 
+ 
+ 
+On dispose de la liste jours  suivante et du dictionnaire mois  suivant : 
+ 
+jours=["dimanche", "lundi", "mardi", "mercredi", "jeudi", 
+"vendredi", "samedi"] 
+ 
+mois={1 :("janvier",31) , 2 :("février",28) , 3 :("mars",31), 
+4 :("avril",30) , 5 :("mai",31) , 6 :("juin",30) , 
+7 :("juillet",31) , 8 :("aout",31) , 9 :("septembre",30) , 
+10 :("octobre",31) , 11 :("novembre",30) , 
+12 :("décembre",31)} 
+ 
+1.  
+a. A partir de la liste jours , comment obtenir l’élément "lundi"  ? 
+ 
+b. On rappelle que l’opérateur % (« modulo ») renvoie le reste de la division 
+entière (division euclidienne).  
+ 
+   Exemple : 7%3 renvoie 1 qui est le reste de la division de 7 par 3 : 
+ 
+Que renvoie l’instruction jours[18%7]  ?  
+ 
+2. On rappelle que jours.index[element]  renvoie l’indice de element  dans la 
+liste jours  par exemple jours.index["mercredi"]  renvoie 3. Le nom du 
+jour actuel est stocké dans une variable j (par exemple : j = "mardi" ). 
+Recopier et compléter l’instruction suivante permettant d’obtenir le numéro du 
+jour de la semaine n jours plus tard : 
+numero_jour =(jours.index[ … ] + … )% … 
+ 
+3.  
+a. A partir du dictionnaire mois , comment obtenir le nombre de jours du mois 
+de mars ? 
+ 
+b. Le numéro du mois actuel est stocké dans une variable numero_mois , 
+écrire le code  permettant d’obtenir le nom du mois qu’il sera x mois plus tard 
+à partir du dictionnaire mois . 
+ Par exemple :   
+  si numero_mois = 4 et x = 5 , on doit obtenir  "septembre"  
+  si numero_mois = 10 et x = 3 , on doit obtenir  "janvier"  
+ 
+4.  On définit une date comme un tuple : 
+(nom_jour,numero_jour, numero_mois,annee)  . 
+ 
+ 
+Page 10 / 41
+EXERCICE 5 :

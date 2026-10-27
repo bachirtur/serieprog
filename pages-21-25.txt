@@ -1,0 +1,192 @@
+
+
+===PAGE 21===
+24-NSIJ1AS1   
+À chaque fois que le joueur dépose des lettres sur la grille, il est nécessaire de mettre 
+à jour son chevalet. 
+Par exemple, si le chevalet du joueur correspond à la liste  
+['A', 'E', 'S', 'E', 'E', 'S', 'R'] et que le joueur dépose les lettres R, E, S, 
+E, A, alors son chevalet devient ['E', 'S']. 
+Cette mise à jour du chevalet est assurée par la fonction chevalet_apres_depot 
+qu’on ne demande pas de programmer. 
+Par exemple, l’appel chevalet_apres_depot(['A', 'E', 'S', 'E', 'E', 'S', 
+'R'], ['R', 'E', 'S', 'E', 'A']) renvoie la liste ['E', 'S']. 
+En début de partie, puis à chaque fois que le joueur a déposé des lettres sur la grille, 
+il faut compléter son chevalet pour qu’il contienne 7 jetons. 
+Pour cela, on donne ci -après le code Python incomplet d’une fonction pioche qui 
+prend en paramètre une li ste de caractères liste_lettres éventuellement vide. 
+Cette fonction permet de compléter le chevalet d’un joueur en y ajoutant autant de 
+lettres que nécessaire. 
+Par exemple, 
+• en début de partie, l’instruction pioche([]) permet de renvoyer une liste de 7 
+caractères aléatoires ; 
+• en cours de partie, si, après avoir déposé des lettres sur la grille, le joueur 
+dispose encore des lettres C, A, E, T et C, alors l’appel  
+pioche(['C', 'A', 'E', 'T', 'C'])  peut renvoyer la liste 
+['C', 'A', 'E', 'T', 'C', 'S', 'U '] : cela signifie que le joueur a tiré, 
+au hasard, un jeton portant la lettre S et un jeton portant la lettre U. 
+1  from random import randint 
+ 
+2  def pioche(liste_lettres): 
+3      lettres = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',  
+                  'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',  
+                  'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'] 
+4      m = len(liste_lettres)  
+5      while ...: 
+6          # Tirage aléatoire d'une lettre 
+7          nb_alea = randint(0, 25) 
+8          tirage = lettres[...] 
+9          liste_lettres.append(tirage)            
+10         m = m + 1 
+11     return liste_lettres 
+8. Recopier et compléter les lignes 5 et 8 de la fonction pioche. 
+Le fichier mots_valides.txt contient un peu plus de 142 000 mots, écrits en 
+minuscules et sans accent à raison d’ un mot par ligne. Chaque mot est donc séparé 
+Page : 21 / 41
+
+===PAGE 22===
+24-NSIJ1AS1   
+par un caractère ‘retour à la ligne’ représenté par \n en Python. On donne ci-dessous 
+les 5 premières lignes de ce fichier. 
+abaissement 
+abaisser 
+abandon 
+abandonnant 
+abandonne 
+La méthode strip appliquée à une chaîne de caractères mot permet, entre autres, de 
+renvoyer la même chaine de caractères privé du caractère \n si celui-ci est en fin de 
+la chaîne de caractères mot. On donne une illustration du fonctionnement de cette 
+méthode ci-dessous : 
+>>> mot = 'abaissement\n' 
+>>> mot = mot.strip() 
+>>> mot 
+'abaissement' 
+Dans le jeu, un mot constitué avec les lettres du chevalet est considéré comme valide 
+uniquement si ce mot est un des mots de ce fichier texte. 
+On donne le code Python suivant qui permet de créer le dictionnaire des anagrammes 
+des mots contenus dans le fichier mots_valides.txt. On suppose que ce fichier est 
+enregistré dans le même répertoire que le script python. 
+1  def lecture(mon_fichier): 
+2      fichier = open(mon_fichier, 'r', encoding = 'UTF-8') 
+3      liste_mots = [] 
+4      for ligne in fichier: 
+5          mot = ligne.strip() 
+6          liste_mots.append(mot) 
+7      fichier.close() 
+8      return liste_mots 
+ 
+9  L = lecture('mots_valides.txt') 
+10 dico = mystere(L) 
+9. Expliquer ce que signifie la valeur 'r' prise par l’un des arguments de la 
+fonction open, ligne 2. 
+Après exécution de ce script, l’instruction dico['EIMPRS'] renvoie la liste des 
+anagrammes ['IMPERS', 'MEPRIS', 'PERMIS', 'PRIMES', 'PRISME']. 
+On dispose également d’une fonction signatures_depuis_tirage qui, à partir d’un 
+tirage de lettres donné sous la forme d’une liste de caractères, renvoie la liste des 
+signatures de tous les mots construits à partir de ce tirage. 
+Par exemple, l’instruction suivante, avec une liste de 4 lettres en argument, 
+signatures_depuis_tirage(['A', 'B', 'C', 'D']) renvoie la liste 
+Page : 22 / 41
+
+===PAGE 23===
+24-NSIJ1AS1   
+['A',  'B', 'AB', 'C', 'AC', 'BC', 'ABC', 'D', 'AD', 'BD', 'ABD', 
+'CD', 'ACD', 'BCD', 'ABCD']. 
+On donne ci-dessous le début d’un script Python. 
+1 chevalet = pioche([]) 
+2 mots_possibles = [] 
+3 liste_signatures = signatures_depuis_tirage(chevalet) 
+4 ... 
+10. Recopier et compléter ce script afin de répondre aux trois points suivants : 
+• déterminer tous les mots du fichier mots_valides.txt qu’il est possible d’écrire 
+à partir de la liste de lettres contenues dans la variable chevalet ; 
+• afficher le mot dont le score est le plus important ; 
+• le programme devra compléter le chevalet pour qu’il contienne à nouveau 7 
+jetons, en supposant que le joueur a déposé sur la grille les lettres permettant 
+de constituer le mot dont le score est le plus élevé. 
+  
+Page : 23 / 41
+
+===PAGE 24===
+On rappelle que len est une fonction qui prend un tableau en paramètre et renvoie sa longueur.
+C’est-à-direlenombred’élémentsprésentsdansletableau.
+Exemple : len([12, 54, 34, 57])vaut4.
+Lebutdecetexerciceestdeprogrammerdiﬀérentesréductionspourunsitedeventedevêtements
+enligne.
+Onrappellequesileprixd’unarticleavantréductionestde xeuros,
+— sonprixvaut 0, 5xsionluiappliqueuneréductionde50%,
+— sonprixvaut 0, 6xsionluiappliqueuneréductionde40%,
+— sonprixvaut 0, 7xsionluiappliqueuneréductionde30%,
+— sonprixvaut 0, 8xsionluiappliqueuneréductionde20%,
+— sonprixvaut 0, 9xsionluiappliqueuneréductionde10%.
+Dans le système informatique du site de vente, l’ensemble des articles qu’un client veut acheter,
+appelé panier,estmodéliséparuntableaudeﬂottants.
+Parexemple,siunclientveutacheterunpantalonà30,50euros,untee-shirtà15euros,unepaire
+dechaussettesà6euros,unejupeà20euros,unepairedecollantsà5euros,unerobeà35euroset
+unshortà10,50euros,lesystèmeinformatiqueauraletableausuivant:
+tab = [30.5, 15.0, 6.0, 20.0, 5.0, 35.0, 10.5]
+1. (a) ÉcrireunefonctionPython total_hors_reductionayantpourargumentletableaudes
+prixdesarticlesdupanierd’unclientetrenvoyantletotaldesprixdecesarticles.
+(b) Lesitedeventeproposelapromotionsuivantecommeoﬀredebienvenue:20%deréduction
+surlepremierarticledelaliste,30%deréductionsurledeuxièmearticledelaliste(s’il
+yaaumoinsdeuxarticles)etaucuneréductionsurlerestedesarticles(s’ilyena).
+Recopier sur la copie et compléter la fonction Python offre_bienvenue prenant en pa-
+ramètre le tableau tab des prix des articles du panier d’un client et renvoyant le total à
+payerlorsqu’onleurappliquel’oﬀredebienvenue.
+1 def offre_bienvenue(tab):
+2 """ tableau -> float """
+3 somme=0
+4 longueur=len(tab)
+5 if longueur > 0 :
+6 somme=tab[0]*...
+7 if longueur > 1 :
+8 somme=somme + ...
+9 if longueur > 2 :
+10 for i in range(2,longueur):
+11 somme=...
+12 return ...
+Pour toute la suite de l’exercice, on pourra utiliser la fonction total_hors_reduction même si la
+question1n’apasététraitée.
+21-NSIJ1AN1 Page : 24 / 41
+Cet exercice porte sur les tableaux et sur la programmation de base en Python.Exercice 10 :
+
+===PAGE 25===
+2. Lorsdelapériodedessoldes,lesitedeventeproposelesréductionssuivantes:
+— silepaniercontient5articlesouplus,uneréductionglobalede50%,
+— silepaniercontient4articles,uneréductionglobalede40%,
+— silepaniercontient3articles,uneréductionglobalede30%,
+— silepaniercontient2articles,uneréductionglobalede20%,
+— silepaniercontient1article,uneréductionglobalede10%.
+Proposer une fonction Python prix_solde ayant pour argument le tableau tab des prix des
+articlesdupanierd’unclientetrenvoyantletotaldesprixdecesarticleslorsqu’onleurapplique
+laréductiondessoldes.
+3. (a) Écrireunefonction minimumquiprendenparamètreuntableau tabdenombresetrenvoie
+lavaleurminimumprésentedansletableau.
+(b) Pour ses bons clients, le site de vente propose une oﬀre promotionnelle, à partir de 2
+articlesachetés,l’articlelemoinscherdesarticlescommandésestoﬀert.
+ÉcrireunefonctionPython offre_bon_clientayantpourparamètreletableaudesprix
+des articles du panier d’un client et renvoyant le total à payer lorsqu’on leur applique
+l’oﬀrebonclient.
+4. Aﬁn de diminuer le stock de ses articles dans ses entrepôts, l’entreprise imagine faire l’oﬀre
+suivanteàsesclients:ensuivantl’ordredesarticlesdanslepanierduclient,elleconsidèreles
+3 premiers articles et oﬀre le moins cher, puis les 3 suivants et oﬀre le moins cher et ainsi de
+suitejusqu’àcequ’ilresteauplus2articlesquin’ontalorsdroitàaucuneréduction.
+Exemple:Silepanierduclientcontientunpantalonà30,50euros,untee-shirtà15euros,une
+pairedechaussettesà6euros,unejupeà20euros,unepairedecollantsà5euros,unerobeà
+35eurosetunshortà10,50euros,cepanierestreprésentéparletableausuivant:
+tab = [30.5, 15.0, 6.0, 20.0, 5.0, 35.0, 10.5]
+Pourlepremiergroupe(lepantalonà30,50euros,letee-shirtà15euros,lapairedechaussettes
+à 6 euros), l’article le moins cher, la paire de chaussettes à 6 euros, est oﬀert. Pour le second
+groupe(lajupeà20euros,lapairedecollantsà5euros,larobeà35euros),lapairedecollants
+à5eurosestoﬀerte.
+Doncletotalaprèspromotiondedéstockageest111euros.
+On constate que le prix après promotion de déstockage dépend de l’ordre dans lequel se pré-
+sententlesarticlesdanslepanier.
+(a) Proposerunpaniercontenantlesmêmesarticlesqueceuxdel’exemplemaisayantunprix
+aprèspromotiondedéstockagediﬀérentde111euros.
+(b) Proposer un panier contenant les mêmes articles mais ayant le prix après promotion de
+déstockageleplusbaspossible.
+(c) Une fois ses articles choisis, quel algorithme le client peut-il utiliser pour modiﬁer son
+panier aﬁn de s’assurer qu’il obtiendra le prix après promotion de déstockage le plus bas
+possible?Onnedemandepasd’écrirecetalgorithme.
+21-NSIJ1AN1 Page : 25 / 41
